@@ -149,7 +149,8 @@ module.exports = async function ({ controlWin, getOutput, getSecondary, screen }
   assert.deepEqual(await ctl(`({a:S.remMs,b:S.secondary.remMs,aRun:S.running,bRun:S.secondary.running})`),savedClockState);
   await choose('secondary');
   const keyboard=await ctl(`(()=>{const before=S.secondary.gridCell,clock=S.secondary.remMs,cell=$('gridSel').children[24];cell.focus();cell.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowLeft',bubbles:true}));return {focused:document.activeElement===$('gridSel').children[23],unchanged:S.secondary.gridCell===before&&S.secondary.remMs===clock,tabStops:$('gridSel').querySelectorAll('[tabindex="0"]').length,label:document.activeElement.getAttribute('aria-label')};})()`);
-  assert.deepEqual(keyboard,{focused:true,unchanged:true,tabStops:1,label:'Red 5, kolona 4'});
+  const cellLabel=await ctl(`t('gridCellLabel').replace('{row}',5).replace('{col}',4)`);
+  assert.deepEqual(keyboard,{focused:true,unchanged:true,tabStops:1,label:cellLabel});
   await ctl(`$('gridPanel').scrollIntoView({block:'center'});`); await delay(100);
   fs.writeFileSync(path.join(os.tmpdir(),'protimer-independent-grid.png'),(await controlWin.webContents.capturePage()).toPNG());
   await ctl(`$('outputLayoutPanel').scrollIntoView({block:'start'});`); await delay(100);
