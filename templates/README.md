@@ -6,8 +6,10 @@
 
 1. Open the CSV in Excel, Numbers, or Google Sheets.
 2. Edit the session names, durations, notes, and optional colors.
-3. Copy the rows you want to import. The header can stay selected; ProTimer skips it because it has no valid duration.
-4. In ProTimer, click an empty part of the Rundown card and paste.
+3. Save it as CSV, then in ProTimer use **Import CSV** under the rundown list. If a rundown already exists, choose **Replace** or **Add to end** (replacing is disabled while a rundown item is running).
+4. Or copy the rows you want, click an empty part of the Rundown card and paste. The header can stay selected; ProTimer skips it because it has no valid duration.
+
+**Export CSV** saves the current rundown as `protimer-rundown-YYYY-MM-DD.csv` (UTF-8, `;` separated, `HH:MM:SS` durations). The exported file imports back unchanged, so you can keep one file per service and reuse it.
 
 Accepted column order:
 
