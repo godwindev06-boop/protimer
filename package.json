@@ -93,6 +93,7 @@
       "scripts/smoke-alerts.js",
       "scripts/smoke-output-quality.js",
       "controller.html",
+      "controller/**/*",
       "output.html",
       "remote.html",
       "backstage.html",
