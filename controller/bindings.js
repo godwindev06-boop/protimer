@@ -25,6 +25,12 @@ $('btnPlanClear').addEventListener('click',()=>{ S.showStart=''; $('showStartInp
 $('cueConfirm').addEventListener('keydown',e=>{ if(e.key==='Escape'){ cancelCueAction(); $('btnRundownStart').focus(); } e.stopPropagation(); });
 $('showStartInput').addEventListener('change',e=>{ S.showStart=e.target.value; send(); renderCues(); });
 $('chkNowNext').addEventListener('change',e=>{ S.showNowNext=e.target.checked; send(); });
+// veličina naslova aktivne stavke na ekranu (40–250 %, 100 = automatski)
+for(const id of ['cueTitleScale','cueTitleScaleValue']) $(id).addEventListener('input',e=>{
+  const value=clampCueTitleScale(e.target.value); if(value===null) return;
+  S.cueTitleScale=value; syncCueTitleScale(e.target.id); send();
+});
+$('cueTitleScaleValue').addEventListener('change',()=>syncCueTitleScale());
 
 $('btnOpenOut').addEventListener('click',()=>api.sendToDisplay(+$('displaySel').value||null));
 $('btnCloseOut').addEventListener('click',()=>api.closeOutput());

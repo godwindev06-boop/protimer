@@ -19,7 +19,7 @@ let S = {
   outputSize:null, outputLayout:TimerTools.layout(),
   dualTimer:false, dualSplit:'columns', separateOutputs:false, liveTimerView:'both',deckLiveMode:'auto',secondary:TimerTools.secondary(),
   // rundown / raspored
-  cues:[], currentCue:-1, showStart:'', showNowNext:false,
+  cues:[], currentCue:-1, showStart:'', showNowNext:false, cueTitleScale:100,
   lang:lang
 };
 let lastNetInfo = null, lastDisplays = [];
@@ -318,7 +318,7 @@ function renderOutputQuality(){
   const name=t(selectedWindow()==='secondary'?'timerTwo':'timerOne');
   let status=t(info?'outputUnchecked':'outputQualityClosed');
   if(outputQuality.status==='checking') status=t('outputChecking');
-  else if(outputQuality.status==='checked') status=`${t('outputChecked')} · ${outputQuality.checkedAt.toLocaleTimeString(lang==='sr'?'sr-Latn':'en-GB')}`;
+  else if(outputQuality.status==='checked') status=`${t('outputChecked')} · ${outputQuality.checkedAt.toLocaleTimeString(langLocale())}`;
   else if(outputQuality.status==='changed') status=t('outputQualityChanged');
   else if(outputQuality.status==='unavailable') status=t('outputQualityUnavailable');
   else if(outputQuality.status==='closed') status=t('outputQualityClosed');

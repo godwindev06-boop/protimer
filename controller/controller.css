@@ -1,4 +1,12 @@
 /* ProTimer Control — stilovi (izdvojeno iz controller.html) */
+  /* ProTimer Inter: jedna ugrađena glatka font porodica za Kontrolu, Ekran, telefon i Backstage (OFL, fonts/) */
+  @font-face{font-family:"ProTimer Inter"; font-style:normal; font-weight:100 900; font-display:block;
+    src:url("../fonts/inter-latin.woff2") format("woff2");
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:"ProTimer Inter"; font-style:normal; font-weight:100 900; font-display:block;
+    src:url("../fonts/inter-latin-ext.woff2") format("woff2");
+    unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  html{-webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:geometricPrecision;}
   :root{
     color-scheme:dark;
     --bg:#0e0e10; --panel:#19191c; --panel2:#242427; --border:rgba(255,255,255,.08);
@@ -16,7 +24,7 @@
   body{margin:0; color:var(--text); overflow:hidden;
     height:100vh; display:flex; flex-direction:column;
     background:var(--bg);
-    font:13.5px/1.45 -apple-system, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+    font:13.5px/1.45 "ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif;
     -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;}
 
   /* ---- top bar ---- */
@@ -76,7 +84,7 @@
     color:var(--dim); font-weight:600;}
   .swatch{display:flex; align-items:center; gap:7px; color:var(--dim); font-size:12.5px;}
   .warn-sw{display:flex; align-items:center; gap:4px;}
-  .warn-sw .tag{font-size:11px; color:var(--dim2); font-family:"SF Mono",Menlo,monospace; width:11px; text-align:center;}
+  .warn-sw .tag{font-size:11px; color:var(--dim2); font-family:"ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif; font-variant-numeric:tabular-nums; width:11px; text-align:center;}
   .field input.short{width:58px;}
 
   /* ---- preview (sadržaj izlaza; u kontroli je uvek velik i centriran) ---- */
@@ -95,7 +103,7 @@
   .gridsel.off{opacity:.35; pointer-events:none;}
   .pv-text{position:relative; font-weight:600; line-height:1.1; text-align:center; padding:0 24px; display:none;
     white-space:pre-wrap; max-width:100%; overflow:hidden;}
-  .pv-time{position:relative; font-family:"SF Mono",ui-monospace,Menlo,monospace; font-weight:700;
+  .pv-time{position:relative; font-family:"ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif; font-variant-numeric:tabular-nums; font-weight:700;
     font-variant-numeric:tabular-nums; line-height:.95; white-space:nowrap;}
   .pv-time.blink,.secondary-readout.blink{animation:pulse 1s steps(2,start) infinite;}
   .zero-alert-row{display:flex;align-items:center;gap:12px 18px;flex-wrap:wrap;}
@@ -121,7 +129,7 @@
   #btnStart.running:hover{background:#936521;}
   #btnReset{flex:.7; font-size:14px; border-radius:11px;}
   .adjust{display:flex; gap:6px; flex:3;}
-  .adjust button{flex:1; font-family:"SF Mono",ui-monospace,Menlo,monospace; font-size:12.5px; padding:8px 4px;
+  .adjust button{flex:1; font-family:"ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif; font-variant-numeric:tabular-nums; font-size:12.5px; padding:8px 4px;
     font-variant-numeric:tabular-nums;}
   #btnBlackout{flex:1; border-radius:11px;}
   #btnBlackout.on{background:#b8322b; border-color:rgba(255,255,255,.12); color:#fff;}
@@ -135,19 +143,19 @@
   .tabs button.active{background:var(--selection); color:#fff; font-weight:600; box-shadow:none;}
   .tabs button.active:hover:not(:disabled){background:var(--selection);}
   .chips{display:flex; gap:5px; flex-wrap:wrap;}
-  .chips button{padding:5px 10px; font-size:12px; font-family:"SF Mono",ui-monospace,Menlo,monospace; color:var(--dim);
+  .chips button{padding:5px 10px; font-size:12px; font-family:"ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif; font-variant-numeric:tabular-nums; color:var(--dim);
     border-radius:20px;}
   .chips button:hover{color:var(--text);}
-  input.short{width:62px; text-align:center; font-family:"SF Mono",Menlo,monospace;}
-  input.w90{width:92px; text-align:center; font-family:"SF Mono",Menlo,monospace;}
+  input.short{width:62px; text-align:center; font-family:"ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif; font-variant-numeric:tabular-nums;}
+  input.w90{width:92px; text-align:center; font-family:"ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif; font-variant-numeric:tabular-nums;}
 
   /* ---- zajednički birač trajanja ---- */
   .duration-control{display:inline-flex; align-items:center; gap:6px; min-width:0;}
   .duration-trigger{display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:34px;
-    padding:6px 10px; border-color:var(--border-strong); font-family:"SF Mono",ui-monospace,Menlo,monospace;
+    padding:6px 10px; border-color:var(--border-strong); font-family:"ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif; font-variant-numeric:tabular-nums;
     font-variant-numeric:tabular-nums; letter-spacing:.2px;}
   .duration-trigger[aria-expanded="true"]{border-color:var(--blue); box-shadow:var(--focus); background:rgba(10,132,255,.12);}
-  .duration-trigger .caption{font-family:-apple-system,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
+  .duration-trigger .caption{font-family:"ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif;
     color:var(--dim); font-size:10px; font-weight:600; letter-spacing:.8px; text-transform:uppercase;}
   .duration-trigger .value{color:var(--text); font-size:13px;}
   .duration-trigger.cue-duration{min-width:94px; padding-inline:9px;}
@@ -164,15 +172,15 @@
   .duration-readout{display:grid; grid-template-columns:1fr 22px 1fr 22px 1fr; align-items:start;}
   .duration-unit{display:flex; min-width:0; flex-direction:column; align-items:center; gap:7px;}
   .duration-segment{width:100%; min-width:0; border:none!important; background:transparent!important; box-shadow:none!important;
-    padding:0!important; color:var(--text); text-align:center; font:700 38px/1.05 "SF Mono",ui-monospace,Menlo,monospace!important;
+    padding:0!important; color:var(--text); text-align:center; font:700 38px/1.05 "ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif;
     font-variant-numeric:tabular-nums; caret-color:var(--blue);}
   .duration-segment:focus{color:#fff; outline:2px solid var(--focus-ring); outline-offset:4px; border-radius:5px;}
   .duration-unit-label{font-size:10px; color:var(--dim); font-weight:600; letter-spacing:.8px; text-transform:uppercase;}
-  .duration-colon{font:700 34px/1 "SF Mono",ui-monospace,Menlo,monospace; text-align:center; color:var(--dim); padding-top:3px;}
+  .duration-colon{font:700 34px/1 "ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif; text-align:center; color:var(--dim); padding-top:3px;}
   .duration-stepper{display:grid; grid-template-columns:1fr 1fr; gap:6px; width:100%; margin-top:1px;}
-  .duration-stepper button{padding:6px 8px; font:600 18px/1 "SF Mono",ui-monospace,Menlo,monospace;}
+  .duration-stepper button{padding:6px 8px; font:600 18px/1 "ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif;}
   .duration-presets{display:grid; grid-template-columns:repeat(6,1fr); gap:6px; margin:15px 0 12px;}
-  .duration-presets button{padding:7px 4px; font-family:"SF Mono",ui-monospace,Menlo,monospace; color:var(--dim);}
+  .duration-presets button{padding:7px 4px; font-family:"ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif; font-variant-numeric:tabular-nums; color:var(--dim);}
   .duration-presets button.active{border-color:var(--accent); color:var(--text); background:rgba(48,209,88,.09);}
   .duration-confirm{width:100%; padding:11px!important; font-size:14px!important; letter-spacing:.8px;}
   .duration-help{margin-top:8px; text-align:center; color:var(--dim2); font-size:10.5px;}
@@ -188,7 +196,7 @@
   .cuehead input[type=time]{padding:4px 6px; font-size:12px;}
   .rundown-start{width:100%; padding:12px!important; margin-bottom:9px; font-size:14px!important;
     font-weight:600!important; letter-spacing:.65px;}
-  .ou{font-family:"SF Mono",Menlo,monospace; font-size:11px; font-weight:700; padding:2px 7px; border-radius:6px;
+  .ou{font-family:"ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif; font-variant-numeric:tabular-nums; font-size:11px; font-weight:700; padding:2px 7px; border-radius:6px;
     background:var(--panel2); border:1px solid var(--border); color:var(--dim); white-space:nowrap;}
   .ou.late{background:#3a1f1d; border-color:#5a2b28; color:#ff8b84;}
   .ou.early{background:#16263a; border-color:#1f3a5a; color:#7db8ff;}
@@ -207,7 +215,7 @@
   .cue .body{flex:1; min-width:0;}
   .cue .nm{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:13px;}
   .cue .note{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:11px; color:var(--dim2); margin-top:1px;}
-  .cue .times{font-family:"SF Mono",Menlo,monospace; color:var(--dim); font-size:11px; text-align:right; flex:0 0 auto;}
+  .cue .times{font-family:"ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif; font-variant-numeric:tabular-nums; color:var(--dim); font-size:11px; text-align:right; flex:0 0 auto;}
   .cue .times .du{color:var(--dim2); font-size:10.5px;}
   .cue .mini{padding:2px 6px; font-size:10px; border-radius:5px; flex:0 0 auto;}
   .cueadd{display:flex; gap:6px; align-items:center; margin-bottom:7px;}
@@ -232,7 +240,7 @@
   .cue-plan input{flex:1; min-width:100px;}
   .cue-plan button{font-size:12px; min-height:32px; padding:5px 9px;}
   .rundown-totals{display:flex; justify-content:space-between; gap:12px; color:var(--dim); font-size:11px;}
-  .rundown-totals strong{display:block; color:var(--text); font:600 16px/1.5 "SF Mono",Menlo,monospace;}
+  .rundown-totals strong{display:block; color:var(--text); font:600 16px/1.5 "ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif;}
   .rundown-totals>div:last-child{text-align:right;}
   .ou{align-self:flex-start; font-size:11px; white-space:normal;}
   .rundown-now{border:1px solid var(--border); border-radius:9px; padding:6px 9px; background:rgba(255,255,255,.025);}
@@ -283,6 +291,8 @@
   .cue-editor .panel-help{margin:6px 0; font-size:11px;}
   .rundown-options{border-top:1px solid var(--border); padding-top:9px; display:grid; gap:8px;}
   .rundown-options .chk{font-size:11.5px;}
+  .rundown-options .cue-title-size{grid-template-columns:minmax(90px,auto) minmax(60px,1fr) 64px; gap:8px; margin:0;}
+  .rundown-options .cue-title-size label{font-size:11.5px;}
   .rundown-foot{display:flex; justify-content:space-between; align-items:center; gap:5px;}
   .rundown-foot button{font-size:11px; padding:5px 7px;}
 
@@ -309,7 +319,7 @@
   .access-tag{font-size:9px; letter-spacing:.5px; color:var(--dim); border:1px solid var(--border-strong); border-radius:4px; padding:2px 4px;}
   .remote-role .access-tag{color:#9fcaff;}
   .net-url{min-width:0; display:block; background:var(--input); border:1px solid var(--border);
-    border-radius:7px; padding:8px; font-family:"SF Mono",ui-monospace,Menlo,monospace; font-size:11px; line-height:1.5; overflow-wrap:anywhere; user-select:text; color:var(--accent);}
+    border-radius:7px; padding:8px; font-family:"ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif; font-variant-numeric:tabular-nums; font-size:11px; line-height:1.5; overflow-wrap:anywhere; user-select:text; color:var(--accent);}
   .net-url.private-url{color:#a7ceff;}
   .net-actions{display:flex; gap:7px; flex-wrap:wrap;}
   .net-actions button{flex:1; font-size:12px; min-height:32px; padding:5px 8px;}
@@ -318,7 +328,7 @@
   .qrbox svg{width:100%; max-width:244px; height:auto; display:block; margin:8px auto;}
   .qrbox .qr-heading{display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:13px; text-align:left;}
   .qrbox .qr-close{color:#101318; background:#eee; min-width:32px; min-height:32px; padding:5px;}
-  .qrbox .qrlbl{color:#30363d; font-size:10.5px; overflow-wrap:anywhere; font-family:"SF Mono",Menlo,monospace; line-height:1.5;}
+  .qrbox .qrlbl{color:#30363d; font-size:10.5px; overflow-wrap:anywhere; font-family:"ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif; font-variant-numeric:tabular-nums; line-height:1.5;}
   .qrbox p{color:#30363d; margin:8px 0; font-size:12px;}
   .qrbox .audience-qr-action{width:100%; margin-top:9px; font-size:12px;}
   .network-online{border-top:1px solid var(--border); padding-top:6px;}
@@ -358,7 +368,7 @@
   .secondary-output-controls select{max-width:100%; min-width:0;}
   .secondary-output-controls .layout-row label{flex:1 1 240px; min-width:0;}
   .secondary-output-controls .layout-row label select{flex:1;}
-  .layout-row input[type=number]{width:84px; min-width:0; font:14px "SF Mono",Menlo,monospace;}
+  .layout-row input[type=number]{width:84px; min-width:0; font:14px "ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif;}
   .layout-slider{display:grid; grid-template-columns:120px minmax(60px,1fr) 78px; gap:12px; align-items:center; margin:12px 0;}
   .layout-slider label{color:var(--dim); font-size:12px;}
   .layout-slider input{width:100%; min-width:0;}
@@ -375,7 +385,7 @@
   .output-quality summary{cursor:pointer; font-weight:600;}
   .output-quality details ol{margin:8px 0; padding-left:20px;}
   .output-quality details li+li{margin-top:6px;}
-  .secondary-readout{font:700 clamp(32px,5vw,64px)/1.2 "SF Mono",Menlo,monospace; text-align:center; padding:12px; background:#000; border-radius:8px;}
+  .secondary-readout{font:700 clamp(32px,5vw,64px)/1.2 "ProTimer Inter",-apple-system,"Segoe UI",system-ui,sans-serif; text-align:center; padding:12px; background:#000; border-radius:8px;}
   #networkSel{width:100%; margin:6px 0 8px; font-size:12px;}
 
   @media (prefers-reduced-motion:reduce){

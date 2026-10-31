@@ -60,4 +60,4 @@ if(window.ProTimerDeckController&&api.deckInvoke)ProTimerDeckController({
   readRundown:()=>({selected:selectedCue}),applyOperation:applyDeckOperation,
   color:id=>id==='t1'?calc(Date.now()).fg:(S.secondary.mode&&S.secondary.mode!=='countdown')?S.fgColor:(TimerTools.remaining(S.secondary,Date.now())<=0?S.warnRed:S.fgColor),
   notice:message=>{const el=document.getElementById('deckCommandNotice')||document.createElement('p');el.id='deckCommandNotice';el.setAttribute('role','status');el.textContent=message;$('streamDeckHost').appendChild(el);}
-},api).then(value=>{deckControl=value;}).catch(()=>{$('streamDeckHost').textContent=lang==='sr'?'Stream Deck nije dostupan. Tajmer radi normalno.':'Stream Deck is unavailable. The timer is unaffected.';});
+},api).then(value=>{deckControl=value;}).catch(()=>{$('streamDeckHost').textContent=({sr:'Stream Deck nije dostupan. Tajmer radi normalno.',fr:'Stream Deck indisponible. Le minuteur fonctionne normalement.'})[lang]||'Stream Deck is unavailable. The timer is unaffected.';});

@@ -102,6 +102,7 @@ const I18N = {
     cueList:'CUE LISTA', cueEmpty:'Nema tačaka. Dodaj naziv + trajanje ↓', namePh:'Naziv',
     autoNext:'Auto-prelaz na sledeći', startRundown:'▶ START RUNDOWN', goNext:'GO ▶ SLEDEĆI &nbsp;(N)', noName:'(bez naziva)',
     rundown:'RUNDOWN', showStart:'Planirani početak', notePh:'Beleška (opciono)…', nowNextOut:'NOW/NEXT na ekranu',
+    cueTitleSize:'Veličina naslova (%)',
     cueImportNone:'Nijedan red nije prepoznat. Format: naziv, trajanje (10:00), beleška',
     cueImportBtn:'Uvezi CSV', cueExportBtn:'Izvezi CSV',
     cueImportTitle:'Uvezi rundown iz CSV fajla (naziv; trajanje; beleška; boja)', cueExportTitle:'Sačuvaj rundown kao CSV fajl',
@@ -224,6 +225,7 @@ const I18N = {
     cueList:'CUE LIST', cueEmpty:'No items. Add name + duration ↓', namePh:'Name',
     autoNext:'Auto-advance to next', startRundown:'▶ START RUNDOWN', goNext:'GO ▶ NEXT &nbsp;(N)', noName:'(no name)',
     rundown:'RUNDOWN', showStart:'Planned start', notePh:'Note (optional)…', nowNextOut:'NOW/NEXT on screen',
+    cueTitleSize:'Title size (%)',
     cueImportNone:'No rows recognized. Format: name, duration (10:00), note',
     cueImportBtn:'Import CSV', cueExportBtn:'Export CSV',
     cueImportTitle:'Import a rundown from a CSV file (name; duration; note; color)', cueExportTitle:'Save the rundown as a CSV file',
@@ -248,10 +250,15 @@ const I18N = {
     shortcuts:'<kbd>Space</kbd> start/pause · <kbd>R</kbd> reset · <kbd>N</kbd> next · <kbd>↑↓</kbd> ±1m · <kbd>←→</kbd> ±10s · <kbd>B</kbd> blackout · <kbd>F</kbd> fullscreen · <kbd>M</kbd> message · <kbd>C</kbd> clear message'
   }
 };
-let lang = localStorage.getItem('pt_lang') || 'sr';
-function t(key){ return (I18N[lang] && I18N[lang][key]) ?? I18N.sr[key] ?? key; }
+const LANGS = ['sr','en','fr'];
+// Bez sačuvanog izbora: francuski sistem → fr, inače podrazumevani srpski kao ranije. I18N.fr je u i18n-fr.js.
+function defaultLang(){ const sys=String((typeof navigator!=='undefined'&&navigator.language)||'').slice(0,2).toLowerCase(); return sys==='fr'?'fr':'sr'; }
+let lang = LANGS.includes(localStorage.getItem('pt_lang')) ? localStorage.getItem('pt_lang') : defaultLang();
+function t(key){ return (I18N[lang] && I18N[lang][key]) ?? I18N.en[key] ?? I18N.sr[key] ?? key; }
+function langLocale(){ return lang==='sr'?'sr-Latn':lang==='fr'?'fr-FR':'en-GB'; }
 function applyLang(){
   document.documentElement.lang = lang;
+  document.title = 'ProTimer — ' + (({sr:'Kontrola',en:'Control',fr:'Contrôle'})[lang]||'Control');
   document.querySelectorAll('[data-i18n]').forEach(el => el.textContent = t(el.dataset.i18n));
   document.querySelectorAll('[data-i18n-ph]').forEach(el => el.placeholder = t(el.dataset.i18nPh));
   document.querySelectorAll('[data-i18n-title]').forEach(el => el.title = t(el.dataset.i18nTitle));

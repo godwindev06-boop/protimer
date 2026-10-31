@@ -149,13 +149,15 @@ function cancelCueEdit(){
 
 // ---------- ČUVANJE ----------
 function saveCues(){ localStorage.setItem('pt_cues',JSON.stringify(cues)); }
+function clampCueTitleScale(value){ const n=Math.round(Number(value)); return Number.isFinite(n)&&String(value).trim()!==''?Math.max(40,Math.min(250,n)):(value===undefined?100:null); }
+function syncCueTitleScale(except){ for(const id of ['cueTitleScale','cueTitleScaleValue']) if(id!==except) $(id).value=S.cueTitleScale??100; }
 function saveSettings(){
   localStorage.setItem('pt_settings',JSON.stringify({
     yellowSec:S.yellowSec,redSec:S.redSec,flashZero:S.flashZero,soundZero:S.soundZero,
     overtime:S.overtime,showProgress:S.showProgress,durationMs:S.durationMs,autoNext,
     bgColor:S.bgColor,fgColor:S.fgColor,useWarnColors:S.useWarnColors,
     warnYellow:S.warnYellow,warnRed:S.warnRed,textOnly:S.textOnly,transparent:S.transparent,
-    showStart:S.showStart,showNowNext:S.showNowNext,
+    showStart:S.showStart,showNowNext:S.showNowNext,cueTitleScale:S.cueTitleScale,
     gridOn:S.gridOn,gridSize:S.gridSize,gridCell:S.gridCell,fitWindow:S.fitWindow,
     outputSize:S.outputSize,outputLayout:S.outputLayout,dualTimer:S.dualTimer,dualSplit:S.dualSplit,
     separateOutputs:S.separateOutputs,liveTimerView:TimerTools.liveView(S.liveTimerView),deckLiveMode:S.deckLiveMode,
@@ -174,7 +176,7 @@ function load(){
       useWarnColors:st.useWarnColors??S.useWarnColors,
       warnYellow:st.warnYellow??S.warnYellow, warnRed:st.warnRed??S.warnRed,
       textOnly:st.textOnly??S.textOnly, transparent:st.transparent??S.transparent,
-      showStart:st.showStart??S.showStart, showNowNext:st.showNowNext??S.showNowNext,
+      showStart:st.showStart??S.showStart, showNowNext:st.showNowNext??S.showNowNext, cueTitleScale:clampCueTitleScale(st.cueTitleScale??S.cueTitleScale),
       ...TimerTools.grid(st),
       fitWindow:st.fitWindow??S.fitWindow,
       outputSize:TimerTools.size(st.outputSize),outputLayout:TimerTools.layout(st.outputLayout),
@@ -183,7 +185,7 @@ function load(){
     S.remMs=S.durationMs; autoNext=!!st.autoNext;
     cues=JSON.parse(localStorage.getItem('pt_cues')||'[]');
   }catch(e){}
-  $('showStartInput').value=S.showStart||''; $('chkNowNext').checked=S.showNowNext;
+  $('showStartInput').value=S.showStart||''; $('chkNowNext').checked=S.showNowNext; syncCueTitleScale();
   $('yellowInput').value=fmtSecs(S.yellowSec,false);
   $('redInput').value=fmtSecs(S.redSec,false);
   $('chkFlash').checked=S.flashZero; $('chkSound').checked=S.soundZero;
