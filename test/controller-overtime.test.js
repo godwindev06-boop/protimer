@@ -5,7 +5,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const TimerTools = require('../timer-tools');
 
-const controller = fs.readFileSync(path.join(__dirname, '..', 'controller.html'), 'utf8');
+const controller = require('./helpers/controller-source').controllerSource();
 function section(start, end) {
   const first = controller.indexOf(start), last = controller.indexOf(end, first);
   assert.ok(first >= 0 && last > first, `Controller section exists: ${start}`);

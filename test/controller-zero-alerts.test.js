@@ -6,7 +6,7 @@ const vm = require('node:vm');
 const TimerTools = require('../timer-tools');
 
 const root = path.join(__dirname, '..');
-const controller = fs.readFileSync(path.join(root, 'controller.html'), 'utf8');
+const controller = require('./helpers/controller-source').controllerSource();
 function section(start, end) {
   const first = controller.indexOf(start);
   const last = controller.indexOf(end, first);

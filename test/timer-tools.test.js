@@ -10,6 +10,11 @@ test('all inline scripts parse, shared browser module is packaged', () => {
     const html = fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
     for (const match of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)) new vm.Script(match[1], { filename: file });
   }
+  // controller.html učitava svoje module iz controller/: svaki mora da se parsira i da bude u paketu
+  const { controllerModules } = require('./helpers/controller-source');
+  assert.ok(controllerModules().length >= 9);
+  for (const file of controllerModules()) new vm.Script(fs.readFileSync(path.join(__dirname, '..', file), 'utf8'), { filename: file });
+  assert.ok(require('../package.json').build.files.includes('controller/**/*'));
   for (const file of ['timer-tools.js', 'window-tools.js', 'secondary-output.js', 'tunnel-tools.js', 'scripts/smoke-layout.js', 'scripts/smoke-separate-outputs.js', 'scripts/smoke-startup.js', 'scripts/smoke-rundown.js', 'scripts/smoke-network-ui.js'])
     assert.ok(require('../package.json').build.files.includes(file));
   assert.ok(require('../package.json').build.mac.extendInfo.NSLocalNetworkUsageDescription.includes('local network'));

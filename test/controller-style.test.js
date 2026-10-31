@@ -5,7 +5,7 @@ const test = require('node:test');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const html = fs.readFileSync(path.join(__dirname, '..', 'controller.html'), 'utf8');
+const html = require('./helpers/controller-source').controllerSource();
 const css = html.match(/<style>([\s\S]*?)<\/style>/)[1];
 const tokens = Object.fromEntries([...css.matchAll(/--([\w-]+):\s*(#[a-f\d]{6})/gi)].map(match => [match[1], match[2]]));
 const luminance = hex => {
