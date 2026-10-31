@@ -14,6 +14,7 @@
   <div class="lang">
     <button data-lang="sr">SR</button>
     <button data-lang="en">EN</button>
+    <button data-lang="fr">FR</button>
   </div>
   <div class="grow"></div>
   <span class="lbl" id="outputTargetLabel" data-i18n="outLabel">Izlaz na</span>
@@ -253,7 +254,7 @@
       <summary id="cueScheduleSummary"></summary>
       <div class="cue-plan">
         <label for="showStartInput" data-i18n="showStart">Planirani početak</label>
-        <input type="time" id="showStartInput" title="Planirani početak showa">
+        <input type="time" id="showStartInput" title="Planirani početak showa" data-i18n-title="showStart">
         <button id="btnPlanNow" data-i18n="planNow">Sada</button>
         <button id="btnPlanClear" data-i18n="planClear">Ukloni</button>
       </div>
@@ -326,6 +327,7 @@
       <div class="rundown-options">
         <label class="chk"><input type="checkbox" id="chkAuto"> <span data-i18n="autoNext">Auto-prelaz na sledeći</span></label>
         <label class="chk"><input type="checkbox" id="chkNowNext"> <span data-i18n="nowNextOut">NOW/NEXT na ekranu</span></label>
+        <div class="layout-slider cue-title-size"><label for="cueTitleScale" data-i18n="cueTitleSize">Veličina naslova (%)</label><input id="cueTitleScale" type="range" min="40" max="250" step="5" value="100" aria-label="Title size"><input id="cueTitleScaleValue" type="number" min="40" max="250" step="5" value="100" aria-label="Title size percent"></div>
       </div>
       <div class="rundown-foot">
         <button id="btnCueReveal" class="ghost" data-i18n="cueReveal">Prikaži aktivnu</button>
@@ -454,6 +456,7 @@
 <script src="deck-controller.js"></script>
 <script src="controller/api.js"></script>
 <script src="controller/i18n.js"></script>
+<script src="controller/i18n-fr.js"></script>
 <script src="controller/timer.js"></script>
 <script src="controller/rundown.js"></script>
 <script src="controller/network.js"></script>

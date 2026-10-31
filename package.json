@@ -94,6 +94,7 @@
       "scripts/smoke-output-quality.js",
       "controller.html",
       "controller/**/*",
+      "fonts/**/*",
       "output.html",
       "remote.html",
       "backstage.html",
@@ -116,6 +117,7 @@
         { "from": "streamdeck-plugin/dist/com.srdjankotarlic.protimer.streamDeckPlugin", "to": "streamdeck/com.srdjankotarlic.protimer.streamDeckPlugin" },
         { "from": "vendor/cloudflared-darwin-arm64", "to": "cloudflared" },
         { "from": "licenses/cloudflared-LICENSE.txt", "to": "licenses/cloudflared-LICENSE.txt" },
+        { "from": "licenses/Inter-OFL.txt", "to": "licenses/Inter-OFL.txt" },
         { "from": "licenses/THIRD_PARTY_NOTICES.md", "to": "licenses/THIRD_PARTY_NOTICES.md" }
       ]
     },
@@ -138,6 +140,7 @@
         { "from": "streamdeck-plugin/dist/com.srdjankotarlic.protimer.streamDeckPlugin", "to": "streamdeck/com.srdjankotarlic.protimer.streamDeckPlugin" },
         { "from": "vendor/cloudflared-windows-amd64.exe", "to": "cloudflared.exe" },
         { "from": "licenses/cloudflared-LICENSE.txt", "to": "licenses/cloudflared-LICENSE.txt" },
+        { "from": "licenses/Inter-OFL.txt", "to": "licenses/Inter-OFL.txt" },
         { "from": "licenses/THIRD_PARTY_NOTICES.md", "to": "licenses/THIRD_PARTY_NOTICES.md" }
       ]
     },

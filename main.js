@@ -104,6 +104,17 @@ function startServer(port, attempt = 0) {
       return;
     }
 
+    // Ugrađeni font za Ekran / telefon / Backstage / OBS (samo poznati fajlovi, bez putanja iz zahteva).
+    const FONT_FILES = { '/fonts/inter-latin.woff2': 'inter-latin.woff2', '/fonts/inter-latin-ext.woff2': 'inter-latin-ext.woff2' };
+    if (FONT_FILES[url]) {
+      try {
+        const body = fs.readFileSync(path.join(__dirname, 'fonts', FONT_FILES[url]));
+        res.writeHead(200, { 'Content-Type': 'font/woff2', 'Cache-Control': 'public, max-age=86400' });
+        res.end(body);
+      } catch (e) { res.writeHead(404); res.end(); }
+      return;
+    }
+
     // Authentication can be checked without issuing a command or exposing the token in state.
     if (url === '/control-status') {
       const ok = req.headers['x-pt-token'] === CMD_TOKEN;
@@ -1205,7 +1216,8 @@ app.whenReady().then(() => {
             var prominent=start.width>card.width*.8&&start.height>=38;
             var sr=Object.keys(I18N.sr).sort(),en=Object.keys(I18N.en).sort();
             var refs=Array.from(document.querySelectorAll('[data-i18n],[data-i18n-html],[data-i18n-ph],[data-i18n-title]')).flatMap(function(el){return [el.dataset.i18n,el.dataset.i18nHtml,el.dataset.i18nPh,el.dataset.i18nTitle].filter(Boolean);});
-            var i18n=JSON.stringify(sr)===JSON.stringify(en)&&refs.every(function(k){return k in I18N.sr&&k in I18N.en;});
+            var fr=Object.keys(I18N.fr||{}).sort();
+            var i18n=JSON.stringify(sr)===JSON.stringify(en)&&JSON.stringify(fr)===JSON.stringify(en)&&refs.every(function(k){return k in I18N.sr&&k in I18N.en&&k in I18N.fr;});
             return JSON.stringify({removed:removed,kept:kept,unique:unique,grid:grid,prominent:prominent,i18n:i18n});
           })()`);
           const value=JSON.parse(uiContractStr); uiContractOK=Object.values(value).every(Boolean);
